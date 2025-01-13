@@ -1,0 +1,567 @@
+/* @theme notebook */
+
+@import url('https://fonts.googleapis.com/css2?family=Concert+One&family=Patrick+Hand&display=swap');
+
+/* ----------------------------------------------------------
+   1) GLOBAL BASE STYLES
+   ---------------------------------------------------------- */
+section,
+p,
+li,
+body,
+.katex {
+    font-family: 'Patrick Hand', cursive, sans-serif;
+    font-size: 26px !important;
+    line-height: 1.2;
+    color: #171616;
+    margin: 0;
+    padding: 0;
+    box-shadow: none;
+    /* no global shadow */
+}
+
+/* Headings in Concert One */
+h1,
+h2,
+h3,
+h4 {
+    font-family: 'Concert One', cursive, sans-serif;
+    color: #333;
+    text-align: center;
+    margin: 0.5em 0;
+}
+
+/* Default heading sizes (adjust as needed) */
+h1 {
+    font-size: 36px !important;
+}
+
+h2 {
+    font-size: 30px !important;
+}
+
+h3 {
+    font-size: 26px !important;
+}
+
+h4 {
+    font-size: 22px !important;
+}
+
+/* ----------------------------------------------------------
+   2) TITLE SLIDE (the very first slide)
+   ---------------------------------------------------------- */
+
+/* Outer Marp slide (the very first <section>) */
+section:nth-of-type(1) {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    margin: 0;
+    padding: 0;
+    background-color: #b2d8b2;
+    overflow: hidden;
+}
+
+/* Let the inner <section> also fill the entire 1280×720 */
+section:nth-of-type(1) section {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+/* Paper container (the white sheet) inside the title slide */
+section:nth-of-type(1) section .paper-container {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+/* Lined paper background */
+section:nth-of-type(1) section .lined-paper {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(to bottom,
+            #fff 0,
+            #fff 25px,
+            #e2e2e2 26px);
+}
+
+/* Centered title container */
+section:nth-of-type(1) section .title-container {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+/* Big peach background behind title text */
+section:nth-of-type(1) section .title-container h1 {
+    display: inline-block;
+    font-size: 54px !important;
+    color: #a03232;
+    background-color: #fdd5b1;
+    padding: 0.5em 1em;
+    border-radius: 10px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 0;
+    line-height: 1.2;
+}
+
+/* Sticky note at bottom-left of title slide */
+section:nth-of-type(1) section .sticky-subtitle {
+    position: absolute;
+    bottom: 60px;
+    left: 60px;
+    width: 300px;
+    height: 300px;
+    background: url('yellow_sticky.png') no-repeat center / cover;
+    transform: rotate(-3deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1em;
+}
+
+section:nth-of-type(1) section .sticky-subtitle h2 {
+    font-size: 22px !important;
+    background: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0;
+    color: #444;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.6);
+}
+
+/* UB logo anchored in bottom-right of the paper container */
+section:nth-of-type(1) section .paper-container::after {
+    content: "";
+    position: absolute;
+    bottom: -80px;
+    right: -160px;
+    width: 800px;
+    height: 400px;
+    background: url('imgs/university-at-buffalo.svg') no-repeat center / contain;
+    z-index: 9999;
+    /* above the lined-paper */
+}
+
+/* “Hello My Name Is” sticker at top-right */
+section:nth-of-type(1) section .hello-sticker {
+    position: absolute;
+    top: 40px;
+    right: 60px;
+    width: 220px;
+    background-color: #58b2b1;
+    border-radius: 8px;
+    border: 4px solid #fff;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    padding: 1em;
+    text-align: center;
+    transform: rotate(-5deg);
+}
+
+section:nth-of-type(1) section .hello-sticker .sticker-header {
+    color: #fff;
+    font-size: 1.3em;
+    line-height: 1.2;
+    margin-bottom: 0.4em;
+}
+
+section:nth-of-type(1) section .hello-sticker .sticker-name {
+    background-color: #fff;
+    color: #444;
+    padding: 0.6em;
+    border-radius: 4px;
+    margin: 0 auto;
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1);
+    font-size: 1.1em;
+}
+
+/* ----------------------------------------------------------
+   3) OTHER (NON-TITLE) SLIDES
+   ---------------------------------------------------------- */
+
+/* Each non-title slide is also 1280×720 */
+section:not(:nth-of-type(1)) {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    margin: 0;
+    padding: 0;
+    background-color: #b2d8b2;
+    /* same pastel green as title slide */
+    overflow: hidden;
+}
+
+/*
+   Example usage:
+   If you want to exclude the 2nd slide from dotted backgrounds,
+   use 'section:not(:nth-of-type(2))'.
+   Then from the 3rd slide onward, we apply dotted background.
+*/
+section:not(:nth-of-type(2)) .body-container {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+    right: 40px;
+    bottom: 40px;
+    background-color: #fffef8;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    /* "Paper-like" dotted background */
+    background-image: url("data:image/svg+xml;utf8,\ <svg width='40' height='40' xmlns='http://www.w3.org/2000/svg'> <line x1='0' y1='0' x2='40' y2='0' stroke='%23ccc' stroke-width='0.7' stroke-dasharray='3 3'/> <line x1='0' y1='40' x2='40' y2='40' stroke='%23ccc' stroke-width='0.7' stroke-dasharray='3 3'/> <line x1='0' y1='0' x2='0' y2='40' stroke='%23ccc' stroke-width='0.7' stroke-dasharray='3 3'/> <line x1='40' y1='0' x2='40' y2='40' stroke='%23ccc' stroke-width='0.7' stroke-dasharray='3 3'/> </svg> ");
+    background-repeat: repeat;
+    background-size: 40px 40px;
+    padding: 2em;
+}
+
+/* Lists, columns, sub-lists, etc. inside .body-container */
+.body-container ul {
+    list-style-type: disc;
+    margin-top: 0.5em;
+    margin-left: 0.5em;
+    margin-bottom: 0.5em;
+    line-height: 1.4;
+}
+
+.body-container li {
+    margin-bottom: 0.5em;
+}
+
+.body-container ul ul {
+    margin-left: 0.5em;
+    margin-top: 0.5em;
+}
+
+.body-container ul ul li {
+    margin-bottom: 0.3em;
+}
+
+/* Inline code styling if used inside .body-container */
+.body-container code {
+    font-size: 1.0em !important;
+    line-height: 1.2 !important;
+    font-family: 'Patrick Hand', cursive, sans-serif;
+}
+
+/*
+   A bit of shifting for the content zone.
+   If content is too high or overlapping,
+   reduce or remove 'margin-top: -40px'
+*/
+.notepad-zone {
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-top: -40px;
+}
+
+/*
+   Headings on slides: 
+   The following targets heading elements that are the 
+   first child of something in the slide. Adjust if needed.
+*/
+section :nth-of-type(1) h1 {
+    font-size: 36px !important;
+    color: #444;
+    text-align: center;
+    margin: 0.5em 0;
+    display: inline-block;
+    background-color: #ffe9b2;
+    padding: 0.3em 0.6em;
+    border-radius: 4px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+section :nth-of-type(1) h2 {
+    font-size: 30px !important;
+    color: #555;
+    text-align: left;
+    margin: 0.5em 0;
+    display: inline-block;
+    background-color: #e0fbb1;
+    padding: 0.3em 0.6em;
+    border-radius: 4px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+section :nth-of-type(1) h3 {
+    font-size: 26px !important;
+    color: #555;
+    text-align: left;
+    margin: 0.5em 0;
+    display: inline-block;
+    background-color: #ffd7d7;
+    padding: 0.3em 0.6em;
+    border-radius: 4px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+section :nth-of-type(1) h4 {
+    font-size: 22px !important;
+    color: #555;
+    text-align: left;
+    margin: 0.5em 0;
+    display: inline-block;
+    background-color: #ccf2ff;
+    padding: 0.3em 0.6em;
+    border-radius: 4px;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* ----------------------------------------------------------
+   4) COLUMNS LAYOUT
+   ---------------------------------------------------------- */
+.columns {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.column.left-col {
+    flex: 1;
+    min-width: 0;
+    /* helps text wrap properly if narrow */
+}
+
+.column.right-col {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Optional small caption styling */
+.caption {
+    font-size: 0.7em;
+    color: #666;
+    margin-top: 0.5em;
+    line-height: 1.1;
+}
+
+/* --------------------------------------------
+   PAGINATION (arrow shape) on all slides
+   -------------------------------------------- */
+section::after {
+    content: "Page " attr(data-marpit-pagination) " / " attr(data-marpit-pagination-total);
+    position: absolute;
+    bottom: 1em;
+    right: 1em;
+    font-weight: bold;
+    font-size: 0.8em;
+    color: #fff;
+    text-align: left;
+    text-shadow: none;
+    pointer-events: none;
+    background-color: #ffa8a8;
+    /* soft pink */
+    padding: 0.4em 1em 0.4em 0.4em;
+    clip-path: polygon(0% 0%, 85% 0%, 100% 50%, 85% 100%, 0% 100%);
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+    z-index: 9999;
+}
+
+/* ----------------------------------------------------------
+   5) PSEUDO-CODE BLOCKS: "NOTEBOOK" STYLE
+   ---------------------------------------------------------- */
+.pseudo-code {
+    background-color: #fff9e6;
+    /* soft pastel */
+    color: #333;
+    border: 1px dashed #ccc;
+    border-radius: 4px;
+    padding: 0.3em;
+    margin: 0.2em 0;
+    font-family: 'Patrick Hand', cursive, sans-serif;
+    font-size: 1em;
+    line-height: 1.4;
+    white-space: pre;
+    display: block;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    transform: rotate(-1deg);
+}
+
+/* KaTeX styling overrides to use Patrick Hand. */
+.katex {
+    font-family: 'Patrick Hand', cursive, sans-serif !important;
+}
+
+.katex .mathnormal,
+.katex .mathrm,
+.katex .mathit {
+    font-family: 'Patrick Hand', cursive, sans-serif !important;
+    font-weight: normal !important;
+    font-size: 1em !important;
+    line-height: 1.2 !important;
+}
+
+.katex .mbin,
+.katex .mrel {
+    font-family: 'Patrick Hand', cursive, sans-serif !important;
+}
+
+.katex .mop {
+    margin-left: 0.2em;
+}
+
+.katex .mopen,
+.katex .mclose {
+    margin: 0 0.08em;
+}
+
+/* Smaller subscripts & superscripts */
+.katex .scriptstyle .mord,
+.katex .scriptscriptstyle .mord,
+.katex .scriptstyle .mord *,
+.katex .scriptscriptstyle .mord *,
+.katex .scriptstyle .vlist *,
+.katex .scriptscriptstyle .vlist * {
+    font-family: 'Patrick Hand', cursive, sans-serif !important;
+    font-size: 0.8em !important;
+    line-height: 1.2 !important;
+    margin-left: 0.05em !important;
+}
+
+.katex .operatorname {
+    font-family: 'Patrick Hand', cursive, sans-serif !important;
+}
+
+.katex .textstyle {
+    font-family: 'Patrick Hand', cursive, sans-serif !important;
+}
+
+/* Adjust vertical offset for KaTeX's vlist (often used for superscripts) */
+.katex .vlist>span {
+    margin-top: -0.1em !important;
+}
+
+.katex .msupsub .vlist>span[style*="top:-2.55em"] {
+    top: -2.3em !important;
+}
+
+/* ----------------------------------------------------------
+   6) IMAGE GALLERY (IF NEEDED)
+   ---------------------------------------------------------- */
+.image-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5em;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.image-gallery img {
+    width: 300px;
+    height: auto;
+}
+
+/* ----------------------------------------------------------
+   7) TABLE STYLING
+   ---------------------------------------------------------- */
+.cute-table-container table {
+    border-collapse: collapse;
+    margin: 1em auto;
+    /* center the table */
+    width: 90%;
+    /* or auto, if you prefer */
+    max-width: 100%;
+    /* ensure it doesn’t overflow the notepad zone */
+    max-height: 100%;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.15);
+    border: 2px solid #ccc;
+    background-color: #fffef8;
+}
+
+/* Th/td styling */
+.cute-table-container table th,
+.cute-table-container table td {
+    border: 1px solid #bbb;
+    padding: 0.6em 0.8em;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 1.2;
+}
+
+/* Maybe a highlight for the table header row */
+.cute-table-container table thead th {
+    background-color: #ffe9b2;
+    color: #444;
+    font-weight: bold;
+}
+
+/* Striped rows for the table body */
+.cute-table-container table tbody tr:nth-child(even) {
+    background-color: #fdf5e6;
+}
+
+/* ==================================================
+   MULTI-COLUMN TOC STYLING
+   ================================================== */
+
+#toc-slide .toc-multi-col {
+    /* Base container for multi-column content. */
+    /* The exact column-count is set by .col-N classes below. */
+    column-gap: 1.5em;
+    column-fill: auto;
+    /* or 'balance', if you prefer. */
+
+    /* Limit vertical space, so columns will break. */
+    max-height: calc(100% - 60px);
+    overflow-y: auto;
+}
+
+/* User picks how many columns via .col-1, .col-2, etc. */
+#toc-slide .toc-multi-col.col-1 {
+    column-count: 1;
+}
+
+#toc-slide .toc-multi-col.col-2 {
+    column-count: 2;
+}
+
+#toc-slide .toc-multi-col.col-3 {
+    column-count: 3;
+}
+
+#toc-slide .toc-multi-col.col-4 {
+    column-count: 4;
+}
+
+/* Override the dotted background + set a custom color */
+#toc-slide .body-container {
+    background-image: none;
+    background-color: #fff8e1;
+}
+
+/* TOC Slide Heading */
+#toc-slide h1 {
+    font-size: 40px !important;
+    color: #d34d4d;
+}
+
+/* TOC List Items */
+#toc-slide li {
+    margin-bottom: 0.4em;
+    list-style-type: disc;
+    /* bullet style */
+}
+
+/* TOC Links */
+#toc-slide a {
+    color: #007acc;
+    text-decoration: none;
+}
+
+#toc-slide a:hover {
+    text-decoration: underline;
+}

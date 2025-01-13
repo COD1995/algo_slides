@@ -1,0 +1,12 @@
+{
+    "markdown.marp.themes": [
+        "./theme.css"
+    ],
+    "markdown.math.enabled": true,
+    "markdown.extension.math.enabled": true,
+    "workbench.colorCustomizations": {
+        "activityBar.background": "#1C322E",
+        "titleBar.activeBackground": "#274641",
+        "titleBar.activeForeground": "#F9FCFB"
+    }
+}
