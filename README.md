@@ -69,7 +69,7 @@ This project introduces a custom **notebook-inspired theme** for Marp slide deck
 *(Example: Notebook-style title page with sticky note subtitle)*
 
 #### Pseudocode Block
-![Pseudocode Block](/assets/tiltle_example.png)
+![Pseudocode Block](/assets/pesudo_code.png)
 *(Notebook-themed pseudocode with pastel background and dashed border)*
 
 #### KaTeX Integration
